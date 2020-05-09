@@ -1,0 +1,109 @@
+* {
+   font-family: 'Roboto', sans-serif;
+}
+
+$main_color: #077915;
+
+.products {
+   background: rgba($color: #666666, $alpha: .1);
+   padding-top: 15px;
+   margin-top: 70px;
+
+   .container {
+      margin-top: 15px;
+      max-width: 1000px !important;
+
+      .row {
+         .product {
+            margin-bottom: 28px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+
+            .item {
+               width: 350px;
+               height: 420px;
+               border-radius: 4px;
+               transition: all 0.4s ease-out;
+               background: #fff;
+               box-shadow: 0 0 5px rgba($color: #333333, $alpha: .4);
+
+               &:hover {
+                  box-shadow: 0 0 20px rgba($color: #333333, $alpha: .4);
+                  transform: translateY(-3px);
+               }
+
+               .list-img {
+                  overflow: hidden;
+                  img {
+                     transition: all 0.3s ease-in;
+                     margin-bottom: 15px;
+                     transform: scale(1.1);
+
+                     &:hover {
+                        transform: scale(1.2);
+                     }
+                  }
+               }
+
+               .title {
+                  transform: translateY(-10px);
+               }
+
+               .edit-cart {
+                  width: 150px;
+                  margin: auto;
+                  input[type=number]::-webkit-inner-spin-button {
+                     -webkit-appearance: none;
+                  }
+
+                  button {
+
+                     position: relative;
+                     width: 20px;
+                     height: 25px;
+                     border-radius: 60%;
+                     transition: all 0.3s ease-in;
+                     border: 1px solid rgba($color: #000000, $alpha: .2);
+
+                     span{
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                     }
+                  }
+
+                  input {
+                     width: 50px;
+                     transition: all 0.3s ease-in;
+                     border: 1px solid #b2bec3;
+                     outline: none;
+
+                     &:focus {
+                        border: 1px solid $main_color;
+                     }
+                  }
+               }
+
+               .add-cart {
+                  margin-top: 28px;
+                  button {
+                     background: $main_color;
+                     color: #fff;
+                     transition: all 0.3s ease-out;
+                     width: 180px;
+                     height: 45px;
+                     font-size: 16px;
+                     font-weight: bold;
+
+                     &:hover {
+                        background: rgba($color: $main_color, $alpha: .9);
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

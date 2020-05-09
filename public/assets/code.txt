@@ -1,0 +1,82 @@
+function verify_code() {
+    key = "spl4yer"
+    checkpass = document.getElementById("pass").value;
+    
+    if (strToHex(R_C_4(key, checkpass)) === "4ae376cd7325c3ca61e443439b75be12cf400283f4c8c5bd47a20d2f84b844") {
+        alert("Congratulation agent P! Now you can submit that flag!")
+    } else {
+        alert("Invalid secret code!");
+    }
+}
+
+function R_C_4(key, str) {
+    var s = [], j = 0, x, res = '';
+    for (var i = 0; i < 256; i++) {
+        s[i] = i;
+    }
+    for (i = 0; i < 256; i++) {
+        j = (j + s[i] + key.charCodeAt(i % key.length)) % 256;
+        x = s[i];
+        s[i] = s[j];
+        s[j] = x;
+    }
+    i = 0;
+    j = 0;
+    for (var y = 0; y < str.length; y++) {
+        i = (i + 1) % 256;
+        j = (j + s[i]) % 256;
+        x = s[i];
+        s[i] = s[j];
+        s[j] = x;
+        res += String.fromCharCode(str.charCodeAt(y) ^ s[(s[i] + s[j]) % 256]);
+    }
+    return res;
+}
+
+function padLeft(str, padPattern) {
+    return String(padPattern + str).slice(-padPattern.length);
+}
+
+function strToBytes(str) {
+    var bytes = [];
+
+    for (var i = 0; i < str.length; i++)
+        bytes.push(str.charCodeAt(i));
+
+    return bytes;
+}
+
+function bytesToStr(bytes) {
+    var str = '';
+
+    for (var i = 0; i < bytes.length; i++)
+        str += String.fromCharCode(bytes[i])
+
+    return str;
+}
+
+function bytesToHex(bytes, separator) {
+    separator = separator || '';
+    return bytes.map(function (x) {
+        return padLeft(x.toString(16), '00');
+    }).join(separator);
+}
+
+function hexToBytes(str) {
+    var filteredStr = str.toLowerCase().replace(/[^0-9a-f]/g, '');
+    if (filteredStr.length % 2 == 1)
+        filteredStr = '0' + filteredStr;
+
+    var bytes = [];
+    for (var i = 0; i < filteredStr.length; i += 2)
+        bytes.push(parseInt(filteredStr.substr(i, 2), 16));
+    return bytes;
+}
+
+function strToHex(str, separator) {
+    return bytesToHex(strToBytes(str), separator);
+}
+
+function hexToStr(hexStr) {
+    return bytesToStr(hexToBytes(hexStr));
+}

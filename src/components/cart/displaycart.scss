@@ -1,0 +1,98 @@
+
+.display-cart {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 16px rgba($color: #333, $alpha: .1);
+    width: 400px;
+    height: 450px;
+    background: #fff;
+    box-shadow: 0 0 8px 8px rgba($color: #333, $alpha: .2);
+    animation: display 0.3s ease-in;
+
+    .wrap-display {
+        width: 100%;
+        height: 100%;
+        
+        .empty {
+            img {
+                margin-left: 20px;
+            }
+        }
+
+        .list-products {
+            flex-direction: column;
+            height: 380px;
+            overflow: auto;
+
+            .item {
+                transition: all 0.3s ease-out;
+                height: 75px;
+                position: relative;
+
+                i {
+                    position: absolute;
+                    top: 25px;
+                    right: 14px;
+                    transition: all .3s ease-out;
+                    cursor: pointer;
+                    padding: 4px;
+                    color: #95a5a6;
+
+                    &:hover {
+                        color: #e74c3c;
+                    }
+                }
+
+                &:hover {
+                    background: rgba($color: #dfe6e9, $alpha: .4);
+                }
+
+                .left {
+                    padding: 8px 10px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 2px;
+                        margin-right: 8px;
+                    }
+
+                    div {
+                        line-height: 6px;
+                        margin: 12px 0 0 8px;
+
+                        p {
+                            color: #999;
+                            font-size: 14px;
+
+                            &.cost {
+                                font-size: 17px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+
+                .right {
+                    position: absolute;
+                    left: 250px;
+                    top: 16px;
+                    line-height: 12px;
+
+                    p {
+                        color: #999;
+                        font-size: 14px;
+
+                        &.cost {
+                            color: #000;
+                            font-size: 17px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
