@@ -1,13 +1,14 @@
 
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import ShowProduct from './components/products/ShowProduct'
 import Datas from './datas.json'
 import Header from './components/header/Header'
-import Empty from './components/products/Empty'
 import Footer from './components/footer/Footer'
 import './style.scss'
+const Empty = React.lazy(() => import('./components/products/Empty'))
 
 class App3 extends Component {
+
    state = {
       inputValue: '',
       products: Datas,
@@ -124,7 +125,9 @@ class App3 extends Component {
                      keyWord={keyWord}
                      addCart={this.addCart}
                   />
-                  : <Empty />
+                  : <Suspense fallback={<p>Loading</p>}>
+                     <Empty />
+                  </Suspense>
 
             }
 

@@ -1,7 +1,8 @@
 
-import React, { Component } from 'react'
-import ShowCartPreview from './ShowCartPreview'
+import React, { Component, Suspense } from 'react'
 import './cart.scss'
+
+const ShowCartPreview = React.lazy(() => import('./ShowCartPreview'))
 
 class Cart extends Component {
    cartPreview = React.createRef();
@@ -41,12 +42,15 @@ class Cart extends Component {
                </>
 
                {this.state.showCartPreview &&
-                  <ShowCartPreview
-                     arrCart={arrCart}
-                     subCart={this.props.subCart}
-                     openCart={this.openCart}
-                     showCartPreview={this.state.showCartPreview}
-                  />}
+                  <Suspense fallback={<p>Loading</p>}>
+                     <ShowCartPreview
+                        arrCart={arrCart}
+                        subCart={this.props.subCart}
+                        openCart={this.openCart}
+                        showCartPreview={this.state.showCartPreview}
+                     />
+                  </Suspense>
+               }
             </div>
          </>
       )
